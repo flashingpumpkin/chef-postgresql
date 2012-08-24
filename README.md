@@ -43,29 +43,33 @@ Additionally this cookbook provides two definitions to create, alter and delete 
 
 
 ```ruby
+# create a user
 pg_user "myuser" do
-    privileges :superuser => false, :createdb => false, :login => true
-    password "mypassword"
+  privileges :superuser => false, :createdb => false, :login => true
+  password "mypassword"
 end
-```
 
-```ruby
+# create a user with an MD5-encrypted password
 pg_user "myuser" do
-    action :drop
+  privileges :superuser => false, :createdb => false, :login => true
+  encrypted_password "667ff118ef6d196c96313aeaee7da519"
 end
-``` 
 
-```ruby
-pg_database "mydb" do
-    owner "myuser"
-    encoding "utf8"
-    template "template0"
+# drop a user
+pg_user "myuser" do
+  action :drop
 end
-```
 
-```ruby
+# create a database
 pg_database "mydb" do
-    action :drop
+  owner "myuser"
+  encoding "utf8"
+  template "template0"
+end
+
+# drop a database
+pg_database "mydb" do
+  action :drop
 end
 ```
 
@@ -438,6 +442,17 @@ postgresql-server-dev-{version}
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+
+## Contributors
+
+Many thanks go to the following who have contributed to making this cookbook even better:
+
+* **[@flashingpumpkin](https://github.com/flashingpumpkin)**
+  * recipe bugfixes
+  * add `pg_user` and `pg_database` definitions
+* **[@cmer](https://github.com/cmer)**
+  * add `encrypted_password` param for `pg_user` definition
 
 
 ## License
