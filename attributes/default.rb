@@ -8,6 +8,7 @@
 #
 
 default["postgresql"]["version"]                         = "9.1"
+default["postgresql"]["postgis_version"]                 = "1.5"
 
 default["postgresql"]["environment_variables"]           = {}
 default["postgresql"]["pg_ctl_options"]                  = ""
