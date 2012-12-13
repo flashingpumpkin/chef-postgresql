@@ -17,6 +17,12 @@ default["postgresql"]["pg_ident"]                        = []
 default["postgresql"]["start"]                           = "auto"  # auto, manual, disabled
 
 #------------------------------------------------------------------------------
+# POSTGIS
+#------------------------------------------------------------------------------
+
+default["postgis"]["version"]                            = "1.5"
+
+#------------------------------------------------------------------------------
 # FILE LOCATIONS
 #------------------------------------------------------------------------------
 default["postgresql"]["data_directory"]                  = "/var/lib/postgresql/#{node["postgresql"]["version"]}/main"
@@ -335,6 +341,14 @@ default["postgresql"]["transform_null_equals"]           = "off"
 
 default["postgresql"]["exit_on_error"]                   = "off"
 default["postgresql"]["restart_after_crash"]             = "on"
+
+
+#------------------------------------------------------------------------------
+# USERS AND DATABASES
+#------------------------------------------------------------------------------
+
+default["postgresql"]["users"]                           = []
+default["postgresql"]["databases"]                       = []
 
 
 #------------------------------------------------------------------------------
